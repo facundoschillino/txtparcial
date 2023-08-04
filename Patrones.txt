@@ -1,0 +1,10 @@
+Factory m -> Creo una cinterfaz para los objetos en comun, 
+una clase padre fabrica
+y una clase fabrica para cada objeto concreto
+Builder -> Hago una interfaz builder con los metodos comunes a las clases hijas
+ y una clase builder para cada objeto que implemente los metodos de la interfaz
+(ejemplo de el auto y el manual)
+Singleton -> Constructor privado y clase que retorna una instancia
+Strategy -> Como en la clase pagos, hago una interfaz con metodos comunes y
+hago subclases pque van a aplicar esos metodos. Luego tengo que llamar a la interfaz
+De esta forma el objeto que toma la estrategia no sabe que toma.
