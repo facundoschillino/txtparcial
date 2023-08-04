@@ -1,0 +1,53 @@
+import org.example.utils.HibernateUtil;
+import org.hibernate.Session;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.List;
+
+public class exampleDAO {
+    public void save(example user) {
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        }
+    }
+    public void update(example user) {
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        }
+    }
+    public Alumno findById(Integer id) {
+        try (Session session = HibernateUtil.getSession()) {
+            return session.find(example.class, id);
+        }
+    }
+
+    public List<Alumno> findAll(String nombre) {
+        try (Session session = HibernateUtil.getSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<example> query = builder.createQuery(example.class);
+            Root<example> root = query.from(example.class);
+
+            //Ejemplo de filtro por aproximacion
+            Predicate likePredicate = builder.like(root.get("nombre"), "%" + nombre + "%");
+            query.where(likePredicate);
+
+            query.select(root);
+
+            return session.createQuery(query).getResultList();
+        }
+    }
+
+    public void delete(example user) {
+        try (Session session = HibernateUtil.getSession()) {
+            session.beginTransaction();
+            session.delete(user);
+            session.getTransaction().commit();
+        }
+    }

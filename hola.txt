@@ -1,0 +1,6 @@
+Programación lógica.
+Se basa en logica proposicional, tenemos reglas y tenemos hechos
+Sintaxis de las reglas
+cabeza :- cuerpo.Ej: mortal(X) :- humano(X).
+Sintaaxis de las preguntas
+?- animal(leon).  
