@@ -1,0 +1,8 @@
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+@ManyToOne
+    @JoinColumn(name = "id_reserva")
+
+@OneToMany(mappedBy = "reserva", fetch = FetchType.EAGER)
+    List<PagoRelacionado> pagos;
